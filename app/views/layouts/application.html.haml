@@ -1,0 +1,16 @@
+!!!
+%html
+  %head
+    %meta{:name => "description", :content => "Scotland's Student Newspaper."}
+    %meta{:name => "Content-Type", :content => "text/html;charset=utf-8"}
+    %meta{:name => "keywords", :content => "the journal, edinburgh, glasgow, news, students" }
+    %meta{:name => "Generator", :content => "© The Journal " + Date::today.strftime('%Y')}
+    %meta{:name => "robots", :content => "index, follow"}
+    %title 
+      Learner Journey Data Jam Datasets
+    = stylesheet_link_tag "bootstrap", "mod_styles", "main", "fonts"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+    %link{ :href => 'http://fonts.googleapis.com/css?family=Caudex:400,700|Lato:300,400,700,900|Arvo:400,700|Cabin:400,500,600,700|Neuton:300,400,700|Istok+Web:400,700|Josefin+Sans:300,400,600,700|Bitter:400,700|Josefin+Slab:300,400,600,700|Muli:300,400|Special+Elite|Alegreya:400,700,900|Alegreya+SC:400,700,900|Crimson+Text:400,600,700|Quattrocento+Sans:400,700|Gravitas+One', :rel => 'stylesheet', :type => 'text/css'}
+  %body
+    = yield
