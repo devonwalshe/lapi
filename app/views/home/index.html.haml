@@ -1,15 +1,364 @@
 %div{:style => "margin: 0 auto; width: 700px; margin-top:50px"}
   =image_tag("/assets/ljdj_data.gif")
   .top-twenty-margin.center.muli.t1-2em.tbold
-    %a{:href => "/"}
+    %a{:href => "http://gubbins.s3.amazonaws.com/ljdj_datasets.zip"}
       .btn.btn-large.btn-success
         %i.icon-download-alt.icon-white
-        Download all datasets
+        Download datasets
   .top-bottom-ten-padding.t1-6em.arvo.hdividerbottom.top-ten-margin
     The Data
   .top-bottom-twenty-margin
-    description
+  We have worked hard over the last 10 weeks to dig up as much useful data as possible from the public sector and external sources. The results are a first ever in Scotland and fairly impressive - we have a complete list of courses and establishments for schools and higher education across Scotland. Notably missing is FE establishments and course information. 
+  
+  %br
+  %br
+  Please don't feel limited by what we've provided - if you have an idea or project that needs more than we have presented - get downloading or scraping. Just make sure you let us know what you've found so it can be shared and included it in our post-event work!
+  
+  %h5 Formatting
+  The datasets have all been cleaned and formatted as best possible to ensure they are easy to use. Character encoding is UTF-8, unix line endings and fields have been cleared of unwanted information where possible. If you find any problems or inconsistencies importing the information let us know and we'll look into it.
+  %br
+  %h5 Disclaimers
+  These datasets are being put forward in good faith from their holders and are not to be sold or distributed or used for any malicious purposes. Hack, build and experiment - keep the data's use within the spirit of the event.
+  %br
+  %br
+  The information included in the sets are changeable by nature, and most of what we have is up to date as of the 2011 / 2012 year. It should not be taken as a canonical resource about things as they are now.
+  
+  Happy Hacking  
+
+
+
   .top-bottom-ten-padding.t1-6em.arvo.hdividerbottom.top-ten-margin
-    Dataset
+    Available Support
+  %p
+    .tbold.inline 
+      Description:
+    A list of types of support available for post-secondary education with eligibility criteria.
+  %p
+    .tbold.inline 
+      Filetype:
+    CSV 
+  %p
+    .tbold.inline 
+      Contents: 
+    29 types of support with the following columns 
+    %br
+    %li  
+      support_name
+    %li
+      support_type
+    %li
+      staying_at_school
+    %li
+      fe_full_time
+    %li
+      he_full_time
+    %li
+      fe_part_time
+    %li
+      he_part_time
+    %li
+      fe_distance
+    %li
+      he_distance
+    %li
+      learning_while_you_work
+    %li
+      contracted_training 
+    %br
+      Values are given as 0 or 1 for eligible or not
+  .top-bottom-ten-padding.t1-6em.arvo.hdividerbottom.top-ten-margin
+    Leaver Destinations by Category
+  %p
+    .tbold.inline 
+      Description:
+    School leaver destination by category. This set breaks down school leavers initial destinations by eight categories, giving you a rich, detailed picture of how students are doing depending on a series of characteristics.
+    %p
+    .tbold.inline 
+      filetype: 
+    JSON
+    %br
+  %p
+    .tbold.inline 
+      Contents: 
+    eight categories, and each of their attributes are nested within, and the destinations nested within each attribute.
+  %p
+    The eight categories are:
+  %li
+    Gender
+  %li
+    Race
+  %li
+    National Identity
+  %li
+    Rural / Urban context
+  %li
+    SIMD Decile
+  %li
+    School meals registration
+  %li
+    Looked after at home or elsewhere
+  %li
+    Highest level attained
+  %br
+  %p
+    Plus the the total number of initial destinations.
     
-        
+
+  
+  .top-bottom-ten-padding.t1-6em.arvo.hdividerbottom.top-ten-margin
+    Leaver Destinations by Local Authority    
+  
+  %p
+    .tbold.inline 
+      Description:
+    This is one of the most interesting sets for its granularity and interesting topic. We are presenting the entire initial destination statistics for school leavers for academic years from 2003 to 2011 and follow up destination information for school leavers for academic years 2007 to 2011. 
+    %p
+    .tbold.inline 
+      Filetype:
+    CSV
+  %p
+    .tbold.inline 
+      Contents:
+    The data is grouped by 31 Scottish Local Authorities, and includes 9 types of destination:
+
+  %li
+    Higher Education
+  %li
+    Further Education
+  %li
+    Training Training
+  %li
+    Employment
+  %li
+    Voluntary Work
+  %li
+    Activity Agreement
+  %li
+    Unemployed Seeking
+  %li
+    Unemployed Not Seeking
+  %li
+    Unknown
+  %br
+  %p
+    The first six are considered positive destinations, and the totals and positive destination totals are also included in the set. 
+
+  %p
+    The set is presented as a CSV file. For disclosure reasons numbers less than 5 were suppressed in the set and listed as a "*". Those entries have been substituted with the integer '100001' to simplify parsing the file and differentiate them from cells where there is no data or the number is 0.
+
+  %p
+    Columns 0-2:
+  %li
+    Year
+  %li
+    LA Code
+  %li
+    LA Name
+  %br
+  %p
+    Columns 3-6
+  %li
+    Total Initial Destinations
+  %li
+    Total Follow Up Destinations
+  %li
+    Total Initial Positive Destinations
+  %li
+    Total Follow Up Positive Destinations
+  %br
+  %p
+    Columns 7-15:
+  %li
+    The nine categories above for initial destinations
+  %br
+  %p
+    Columns 16-24
+  %li
+    The nine categories above for follow up destinations
+
+  
+  .top-bottom-ten-padding.t1-6em.arvo.hdividerbottom.top-ten-margin
+    Open University Course List
+  %p
+    .tbold.inline 
+      Description:
+    A complete list of courses from the Open University
+  %p
+    .tbold.inline 
+      Filetype: 
+    XCRI XML FEed
+  %p
+    .tbold.inline 
+      Contents: 
+    See XCRI Documentation - 
+    %a{:href => "http://www.xcri.co.uk/"}
+      http://www.xcri.co.uk/
+  .top-bottom-ten-padding.t1-6em.arvo.hdividerbottom.top-ten-margin
+    ScotXed List of establishments and courses
+  %p
+    .tbold.inline 
+      Description:
+    A list of every Nursery, Primary and Secondary School, and a list of every course offered at every school, along with useful information about both courses and schools. 
+  %p
+    .tbold.inline 
+      Filetype: 
+    2 x CSV
+  %p
+    .tbold.inline 
+      Contents:  
+  %p
+    Course Information:
+  %li
+    centre_seed_code
+  %li
+    sqa_course_code
+  %li
+    scqf_course_level
+  %li
+    title
+  %li
+    qualtype
+  
+  %br
+  %p
+    Centre Information:
+  %li
+    centretype
+  %li
+    seedcode
+  %li
+    schoolname
+  %li
+    email_address
+  %li
+    website_url
+  %li
+    phone_number
+  %li
+    fax_number
+  %li
+    denomination
+  %li
+    la_code
+  %li
+    parent_council
+  %li
+    integrated_sen_unit
+  %li
+    status
+  %li
+    datazone
+  %li
+    parliamentary_constituency
+  %li
+    urban_rural_context
+  %li
+    address
+  %li
+    level
+  %li
+    postcode 
+  %br
+  %p
+  .tbold.inline 
+    Documentation:
+  %br
+  %a{:href => "http://www.sqa.org.uk/files_ccc/NQ_Catalogue.xls"}
+    SQA NQ Catalogue
+  
+  %br
+  %a{:href => "http://data.gov.uk/dataset/data-zones-2001"}
+    Datazones information
+  .top-bottom-ten-padding.t1-6em.arvo.hdividerbottom.top-ten-margin
+    SCQF Course List
+  
+  %p
+  .tbold.inline 
+    Description:
+  Huge list of courses from the Scottish Credit and Qualifications Framework. This set lists over 2,000 courses in Scotland across subjects like the social sciences, engineering, creative industries, computing, finance, business and administration amongst many others. 
+  %p
+  .tbold.inline 
+    Filetype:
+  CSV
+  %p
+  .tbold.inline 
+    Contents:
+  %li
+    course_id
+  %li
+    crb
+  %li
+    programme_owner
+  %li
+    programme_identifier
+  %li
+    programme_owner_identifier
+  %li
+    title
+  %li
+    level
+  %li
+    credits
+  %li
+    subject_1
+  %li
+    subject_2
+  %li
+    description
+  %li
+    target
+  %li
+    approval_date
+  %li
+    review_date  
+
+  %p
+  .tbold.inline 
+    Documentation:
+  %a{:href => "http://gubbins.s3.amazonaws.com/scqf_framework_diagram.pdf"}
+    Framework document explaining the SQA course levels
+  
+  .top-bottom-ten-padding.t1-6em.arvo.hdividerbottom.top-ten-margin
+    Unistats
+  %p
+  .tbold.inline 
+    Description: 
+  A complete description of universities and colleges in the UK with course level information from Unistats.
+
+  %p
+    This is an incredibly comprehensive and well documented dataset that includes information on over 30,000 courses, entry conditions, accreditation, employment options and salaries, accommodation prices and much more.
+
+  %p
+  .tbold.inline 
+    Filetype:  
+  %br
+  One large XML dump
+  %br 
+  Separate nodes as CSV files
+  %br
+  HTTP API
+
+  %p
+  .tbold.inline 
+    Contents:   
+  Refer to the documentation
+  
+  %p
+  .tbold.inline 
+    Documentation:  
+  %br
+  %a{:href => "http://unistats.direct.gov.uk/media/48215/kis_guidance_documentation.pdf"}
+    Unistats guidance documentation
+  %br
+  %a{:href => "http://www.hesa.ac.uk/index.php?option=com_studrec&Itemid=232&mnl=12061"}
+    Full technical documentation for the XML file
+
+  %br
+  %a{:href => "http://dataportal.unistats.ac.uk/"}
+    HTTP API that allows you to investigate course and institution information as JSON or XML feeds.
+
+  %br
+  %a{:href => "http://dataportal.unistats.ac.uk/Pages/ApiDocumentation"}
+    API documentation and registration
+  .top-bottom-twenty-margin
+    %br
