@@ -9,8 +9,10 @@ class HomeController < ApplicationController
           @data = Course.where("title ILIKE ? ", "%#{params[:q]}%")
       
           @data.each do |course|
-            @establishments << course.establishment
-            @establishments.uniq!
+            if course.establishment
+              @establishments << course.establishment
+              @establishments.uniq!
+            end   
           end   
         elsif params[:type] == "institution"
           @establishments = Establishment.where("establishment_name ILIKE ? ", "%#{params[:q]}%")
@@ -30,7 +32,11 @@ class HomeController < ApplicationController
               @establishments.uniq!
             end
           end
-        end 
+        # else
+        #   params[:type] = "institution"
+        #   @establishments = Establishment.where("establishment_name ILIKE ?", "%university%")   
+        end
+       
   end
   
   def search_subject

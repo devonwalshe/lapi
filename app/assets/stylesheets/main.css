@@ -6,3 +6,12 @@ body { height: 100%; margin: 0; padding: 0 }
   
   color: rgb(75, 185, 194);
 }
+
+.red {
+  
+  background-color: rgb(220, 104, 87);
+}
+  
+.green{
+  background-color:rgb(67, 171,  163 );
+}
