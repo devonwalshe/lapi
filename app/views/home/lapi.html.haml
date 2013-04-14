@@ -54,15 +54,15 @@
     .block.t1-6em.twhite.josefin-sans{:style => "display:block"}
       Search results
     .block{:style => "display:block; max-height:475px; overflow:hidden"}
-      -@establishments[0..15].each do |establishment|
+      -@establishments[0..10].each do |establishment|
         %br
         -if establishment
           %a{:href => "establishment.website_url", :style => "color:#222"}
             =establishment.establishment_name
-      -if @establishments.count >= 15
+      -if @establishments.count >= 10
         .block.twhite
           +
-          = @establishments.count - 15
+          = @establishments.count - 10
           more... 
   .block
     =image_tag("/assets/icons/ribbon.gif", :size =>"154x23")
@@ -143,7 +143,7 @@
 
         });
         
-        addInfoBox(marker, "<a class = \"josefin-sans tbold\" href = \""+"http://"+establishments[i]["website_url"]+"\"> "+establishments[i]["establishment_name"] + "</a>");
+        addInfoBox(marker, "<a class = \"josefin-sans tbold\" href = \"" + "http://" + establishments[i]["website_url"]+ "\">"+ establishments[i]["establishment_name"] + "</a> <br>" + "<div class =\"tbold\">" + establishments[i]["education_type"] + "</div>" + establishments[i]["email"] + "<br>"+ establishments[i]["phone"] + "<br>" + "<br/><div class =\"t0-8em\">" + establishments[i]["address"] + "</div>");
       } 
       map.fitBounds (bounds);
       
