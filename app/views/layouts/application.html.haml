@@ -10,7 +10,14 @@
       Learner Journey Data Jam Datasets
     = stylesheet_link_tag "bootstrap", "mod_styles", "main", "fonts"
     = javascript_include_tag "application"
-    = csrf_meta_tags
+    %script{:src => "http://maps.googleapis.com/maps/api/js?key=AIzaSyDSxwX0QVXxSm2-rHIisLXOSrj5Lw2ZINs&sensor=true"}
+    %script{:src => "http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/src/infobox_packed.js"}
     %link{ :href => 'http://fonts.googleapis.com/css?family=Caudex:400,700|Lato:300,400,700,900|Arvo:400,700|Cabin:400,500,600,700|Neuton:300,400,700|Istok+Web:400,700|Josefin+Sans:300,400,600,700|Bitter:400,700|Josefin+Slab:300,400,600,700|Muli:300,400|Special+Elite|Alegreya:400,700,900|Alegreya+SC:400,700,900|Crimson+Text:400,600,700|Quattrocento+Sans:400,700|Gravitas+One', :rel => 'stylesheet', :type => 'text/css'}
+    :css
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #map-canvas { height: 100% }
+
+  
   %body
     = yield

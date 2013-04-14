@@ -1,13 +1,16 @@
 class CreateEstablishments < ActiveRecord::Migration
   def change
     create_table :establishments do |t|
-      t.string :name
+      t.string :establishment_name
       t.float :lat
       t.float :long
       t.string :address
-      t.string :provider_uid
-      t.integer :col_low
-      t.integer :col_high
+      t.string :post_code
+      t.string :email
+      t.string :phone
+      t.string :education_type
+      t.string :website_url
+      t.integer :official_establishment_uid
       t.timestamps
     end
   end

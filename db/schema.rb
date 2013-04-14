@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,10 +10,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130410133215) do
+ActiveRecord::Schema.define(:version => 20130414070318) do
 
   create_table "courses", :force => true do |t|
-    t.text     "name"
+    t.text     "title"
     t.integer  "cost"
     t.text     "requirements"
     t.string   "course_code"
@@ -24,18 +23,24 @@ ActiveRecord::Schema.define(:version => 20130410133215) do
     t.string   "qualification_type"
     t.boolean  "pt_ft"
     t.string   "education_type"
+    t.integer  "establishment_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "courses", ["establishment_id"], :name => "index_courses_on_establishment_id"
+
   create_table "establishments", :force => true do |t|
-    t.string   "name"
+    t.string   "establishment_name"
     t.float    "lat"
     t.float    "long"
     t.string   "address"
-    t.string   "provider_uid"
-    t.integer  "col_low"
-    t.integer  "col_high"
+    t.string   "post_code"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "education_type"
+    t.string   "website_url"
+    t.integer  "official_establishment_uid"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

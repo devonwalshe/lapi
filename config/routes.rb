@@ -1,4 +1,10 @@
 Lapi::Application.routes.draw do
+  match "/lapi" => "home#lapi"
+  match "/search_subject" => "home#search_subject"
+  match "/search_institution" => "home#search_institution"
+  match "/search_postcode" => "home#search_postcode"
+  match "/search_qualification" => "home#search_qualification"
+  match "/search_scqf" => "home#search_scqf"
   root :to => "home#index"
   
   # The priority is based upon order of creation:

@@ -1,0 +1,154 @@
+
+#map-canvas
+
+
+
+.h100.bgwhite{:style =>"z-index:100; opacity:0.8; position:absolute; top:0px; left:0px; width:100%" }
+  .t3em.josefin-sans.twenty-padding.top-twenty-margin.tbold
+    \- Course Finder -
+.bgwhite{:style=> "z-index: 50; position:absolute; width:350px; min-height:100%; top:0"}
+  %div.twenty-padding.lato.tbold.t1-6em.tgreen{:style => "position:absolute; top:100px"}
+    What are you looking for?
+    .t0-8em 
+      .top-twenty-margin.tblack
+        Subject / Interest
+      .top-five-margin
+        =form_tag "/search_subject", :class => "navbar-search", :method => :get do
+          =text_field_tag :q, nil, :class => "search-query", :placeholder => "Search Subjects"
+      %br
+      %br
+      .top-twenty-margin.tblack
+        Institution
+      .top-five-margin
+        =form_tag "/search_institution", :class => "navbar-search", :method => :get do
+          =text_field_tag :q, nil, :class => "search-query", :placeholder => "Search Subjects"
+      %br
+      %br
+      .top-twenty-margin.tblack
+        Postcode
+        .top-five-margin
+          =form_tag "/search_postcode", :class => "navbar-search", :method => :get do
+            =text_field_tag :q, nil, :class => "search-query", :placeholder => "Search Subjects" 
+      %br
+      %br
+      .top-twenty-margin.tblack
+        Qualification
+        .top-five-margin
+          =form_tag "/search_qualification", :class => "navbar-search", :method => :get do
+            =text_field_tag :q, nil, :class => "search-query", :placeholder => "Search Subjects"
+      %br
+      %br
+      .top-twenty-margin.tblack
+        %i.icon-download-alt
+        SCQF Level
+      .top-five-margin
+        =form_tag "/search_scqf", :class => "navbar-search", :method => :get do
+          =text_field_tag :q, nil, :class => "search-query", :placeholder => "Search Subjects"
+
+.bgwhite.border.ten-padding{:style => "position:absolute; top:100px; right:150px; width: 150px"}
+  .t1-6em
+    Search results
+  -@establishments.each do |establishment|
+    %br
+    -if establishment
+      =establishment.establishment_name   
+
+
+:javascript  
+  function initialize() {
+    var mapOptions = {
+      center: new google.maps.LatLng(55.945, -3.185),
+      zoom: 6,
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      disableDefaultUI: true,
+    };
+
+    var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+    // var contentString = '<div id="content" class="w150 h150">get with this</div>';
+
+    function addInfoWindow(marker, message) {
+      var info = message;
+      var infoWindow = new google.maps.InfoWindow({
+        content: message
+      });
+
+      google.maps.event.addListener(marker, 'click', function(){
+        infoWindow.open(map, marker)
+      });
+    };
+
+    function addInfoBox(marker, message) {
+      var info = message;
+      var boxText = document.createElement("div");
+      boxText.style.cssText = "border: 1px solid black; margin-top: 8px; background: yellow; padding: 5px;";
+      boxText.innerHTML = info;
+      var myOptions = {
+                     content: boxText
+                    ,disableAutoPan: false
+                    ,maxWidth: 0
+                    ,pixelOffset: new google.maps.Size(-140, 0)
+                    ,zIndex: null
+                    ,boxStyle: { 
+                      background: "url('http://google-maps-utility-library-v3.googlecode.com/svn/tags/infobox/1.1.9/examples/tipbox.gif') no-repeat"
+                      ,opacity: 0.75
+                      ,width: "280px"
+                     }
+                    ,closeBoxMargin: "10px 2px 2px 2px"
+                    ,closeBoxURL: "http://www.google.com/intl/en_us/mapfiles/close.gif"
+                    ,infoBoxClearance: new google.maps.Size(1, 1)
+                    ,isHidden: false
+                    ,pane: "floatPane"
+                    ,enableEventPropagation: true   
+      };
+      var ib = new InfoBox(myOptions);
+      google.maps.event.addListener(marker, 'click', function(){
+        ib.open(map, marker);
+      });
+    }
+
+    var establishments = #{@establishments.to_json}
+
+    var LatLngList = new Array ( )
+
+    for (var i= 0; i< establishments.length; i++) {
+      LatLngList.push(new google.maps.LatLng(establishments[i]["lat"],establishments[i]["long"]));
+     }
+
+    var bounds = new google.maps.LatLngBounds();
+
+    for (var i=0, LtLgLen = LatLngList.length; i < LtLgLen; i++) {
+       bounds.extend (LatLngList[i]);
+    }
+
+    for (var i=0;i<establishments.length;i++)
+    { 
+      var marker = new google.maps.Marker({
+         position:  new google.maps.LatLng(establishments[i]["lat"],establishments[i]["long"]),
+         map: map,
+
+      });
+      addInfoBox(marker, "<a href = \""+"http://"+establishments[i]["website_url"]+"\"> "+establishments[i]["establishment_name"] + "</a>");
+    } 
+    map.fitBounds (bounds);
+
+  }
+
+  function loadScript() {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDSxwX0QVXxSm2-rHIisLXOSrj5Lw2ZINs&sensor=true&callback=infoBoxLoad";
+  
+    document.body.appendChild(script);
+    console.log("loaded google api")    
+  }
+  
+  function infoBoxLoad(){
+    var scriptInfoBox = document.createElement("script");
+    scriptInfoBox.type = "text/javascript";
+    scriptInfoBox.src = "http://google-maps-utility-library-v3.googlecode.com/svn/tags/infobox/1.1.9/src/infobox.js";
+    document.body.appendChild(scriptInfoBox);
+    scriptInfoBox.load = initialize();
+    console.log("loaded infobox") 
+  }  
+
+  window.onload = infoBoxLoad();                         
